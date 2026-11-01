@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delícias da Jaque | Confeitaria Artesanal</title>
+    
+    <!-- Favicon na aba do navegador -->
+    <link rel="icon" type="image/jpeg" href="Favcon.jpeg">
+
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Tela de Carregamento (Splash Screen) -->
+    <div id="splashScreen" class="splash-screen">
+        <div class="splash-content">
+            <div class="splash-logo-container">
+                <div class="neon-ring"></div>
+                <img src="Favcon.jpeg" alt="Logo Delícias da Jaque" class="splash-logo">
+            </div>
+            <h2>Delícias da Jaque</h2>
+            <p>Preparando doçuras exclusivas para você...</p>
+        </div>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <img src="Favcon.jpeg" alt="Logo Delícias da Jaque" class="logo-img">
+            <h2>Delícias da <span>Jaque</span></h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Início</a></li>
+                <li><a href="#destaques">Destaques</a></li>
+                <li><a href="#catalogo">Catálogo</a></li>
+                <li><a href="#sabores">Recheios</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <button id="userAccountBtn" class="account-btn" title="Entrar ou Criar Conta">
+                <i class="fa-solid fa-user"></i>
+                <span id="userNameDisplay">Entrar</span>
+            </button>
+
+            <button id="cartBtn" class="cart-icon-btn">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span id="cartCount">0</span>
+            </button>
+            <a href="#catalogo" class="btn-primary">Fazer Pedido</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <span class="badge-destaque">✨ Confeitaria Artesanal de Alto Padrão</span>
+                <h1>Transformando Momentos em Doce Magia</h1>
+                <p>Bolos artísticos, doces finos e sobremesas criadas com paixão e ingredientes selecionados para a sua comemoração.</p>
+                <div class="hero-buttons">
+                    <a href="#catalogo" class="btn-primary">Explorar Catálogo</a>
+                    <a href="https://wa.me/556292525200" target="_blank" class="btn-secondary-hero">
+                        <i class="fa-brands fa-whatsapp"></i> Falar com a Jaque
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image" onclick="openProductModal(2)" style="cursor: pointer;">
+                <img src="image_d79119.png" alt="Bolo Natalino em destaque">
+                <div class="floating-tag">
+                    <i class="fa-solid fa-star"></i> O Queridinho da Semana
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Diferenciais -->
+    <section class="features-section" id="destaques">
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="icon-box"><i class="fa-solid fa-cake-candles"></i></div>
+                <h3>Receitas Exclusivas</h3>
+                <p>Massas fofinhas e recheios generosos que derretem na boca.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-box"><i class="fa-solid fa-medal"></i></div>
+                <h3>Qualidade Premium</h3>
+                <p>Utilizamos chocolate belga e ingredientes frescos de primeira linha.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-box"><i class="fa-solid fa-truck-fast"></i></div>
+                <h3>Entrega Cuidadosa</h3>
+                <p>Seu pedido chega intacto e impecável no horário combinado.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-box"><i class="fa-solid fa-heart"></i></div>
+                <h3>Feito sob Encomenda</h3>
+                <p>Personalizamos o tema e o sabor do jeito que você sonhou.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Banner Decorativo Criativo -->
+    <section class="banner-creative">
+        <div class="banner-overlay"></div>
+        <div class="banner-content">
+            <h2>Tem uma festa ou evento especial chegando?</h2>
+            <p>Deixe a mesa de doces inesquecível. Encomende com antecedência e garanta a sua data!</p>
+            <a href="https://wa.me/556292525200" target="_blank" class="btn-primary">Solicitar Orçamento Personalizado</a>
+        </div>
+    </section>
+
+    <!-- Seção Catálogo -->
+    <section id="catalogo" class="catalog-section">
+        <div class="section-title">
+            <h2>Nosso Catálogo Exclusivo</h2>
+            <p>Clique em qualquer item para ver todos os detalhes e encomendar</p>
+        </div>
+
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="todos">Todos os Produtos</button>
+            <button class="filter-btn" data-filter="bolos">Bolos Decorados</button>
+            <button class="filter-btn" data-filter="docinhos">Docinhos & Festas</button>
+        </div>
+
+        <div class="product-grid" id="productGrid"></div>
+    </section>
+
+    <!-- Seção Recheios e Sabores Especiais -->
+    <section id="sabores" class="flavors-section">
+        <div class="section-title">
+            <h2>Nossos Recheios Irresistíveis</h2>
+            <p>Escolha a combinação perfeita para o seu bolo artesanal</p>
+        </div>
+        <div class="flavors-grid">
+            <div class="flavor-card">
+                <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=500&q=80" alt="Ninho com Nutella">
+                <div class="flavor-info">
+                    <h3>Ninho com Nutella</h3>
+                    <p>Creme cremoso de Leite Ninho legítimo combinado com generosas camadas de Nutella cremosa.</p>
+                </div>
+            </div>
+            <div class="flavor-card">
+                <img src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=500&q=80" alt="Doce de Leite com Nozes">
+                <div class="flavor-info">
+                    <h3>Doce de Leite com Nozes</h3>
+                    <p>Doce de leite artesanal encorpado com crocantes nozes selecionadas tostadas.</p>
+                </div>
+            </div>
+            <div class="flavor-card">
+                <img src="https://images.unsplash.com/photo-1579372786545-d24232daf58c?auto=format&fit=crop&w=500&q=80" alt="Brigadeiro Belga">
+                <div class="flavor-info">
+                    <h3>Brigadeiro Belga 50%</h3>
+                    <p>Trufa cremosa feita com chocolate belga nobre, equilibrando doçura e intensidade.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Passo a Passo da Encomenda -->
+    <section class="steps-section">
+        <div class="section-title">
+            <h2>Como Encomendar é Fácil</h2>
+            <p>Do seu pedido até a sua mesa em 4 passos simples</p>
+        </div>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Escolha o Modelo</h3>
+                <p>Navegue pelo catálogo e escolha o bolo ou doces que mais combinam com sua festa.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>Personalize o Sabor</h3>
+                <p>Defina o tamanho, recheios e detalhes especiais direto no site ou com a Jaque.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>Envie no WhatsApp</h3>
+                <p>Finalize o carrinho e mande o pedido direto para o WhatsApp com um clique.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <h3>Receba e Comemore</h3>
+                <p>Prontinho! Seu bolo fresquinho entregue com todo cuidado para a sua comemoração.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Sobre / História -->
+    <section id="sobre" class="about-section">
+        <div class="about-container">
+            <div class="about-text">
+                <span class="sub-title">Nossa História</span>
+                <h2>Amor e Arte em Cada Fatia</h2>
+                <p>A <strong>Delícias da Jaque</strong> nasceu do sonho de transformar açúcar, afeto e criatividade em momentos memoráveis. Cada bolo e docinho é preparado com rigor artesanal, unindo beleza visual impressionante e um sabor caseiro inconfundível.</p>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <strong>+500</strong>
+                        <span>Sonhos Realizados</span>
+                    </div>
+                    <div class="stat-item">
+                        <strong>100%</strong>
+                        <span>Feito à Mão</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-banner-img">
+                <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80" alt="Confeitaria Artesanal">
+            </div>
+        </div>
+    </section>
+
+    <!-- Página de Detalhes do Produto -->
+    <div class="product-detail-page" id="productDetailPage">
+        <div class="detail-container">
+            <button id="backToCatalog" class="btn-back">
+                <i class="fa-solid fa-arrow-left"></i> Voltar ao Catálogo
+            </button>
+            
+            <div class="detail-grid">
+                <div class="detail-image-box">
+                    <img id="detailImg" src="" alt="Produto">
+                </div>
+
+                <div class="detail-info-box">
+                    <span class="detail-badge" id="detailCategory">Categoria</span>
+                    <h1 id="detailTitle">Nome do Produto</h1>
+                    
+                    <div class="detail-price-box">
+                        <span id="detailPrice">R$ 0,00</span>
+                    </div>
+
+                    <div class="detail-description-section">
+                        <h3>O que você precisa saber sobre este produto:</h3>
+                        <p id="detailDesc">Descrição detalhada do produto.</p>
+                    </div>
+
+                    <div class="detail-specs">
+                        <div class="spec-item"><i class="fa-solid fa-check"></i> Produção 100% Artesanal</div>
+                        <div class="spec-item"><i class="fa-solid fa-shield-heart"></i> Ingredientes Selecionados de Alta Qualidade</div>
+                        <div class="spec-item"><i class="fa-solid fa-clock"></i> Encomenda com antecedência mínima</div>
+                    </div>
+
+                    <div class="detail-qty-section">
+                        <label>Quantidade:</label>
+                        <div class="qty-selector">
+                            <button id="qtyMinus">-</button>
+                            <span id="qtyVal">1</span>
+                            <button id="qtyPlus">+</button>
+                        </div>
+                    </div>
+
+                    <div class="detail-actions">
+                        <button id="detailAddToCartBtn" class="btn-primary btn-block btn-lg">
+                            <i class="fa-solid fa-cart-plus"></i> Adicionar ao Carrinho
+                        </button>
+                        <button id="detailBuyNowBtn" class="btn-whatsapp btn-block btn-lg">
+                            <i class="fa-brands fa-whatsapp"></i> Comprar Agora no WhatsApp
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal do Carrinho -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>Seu Pedido</h3>
+                <button id="closeCart" class="close-cart">&times;</button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <p class="empty-cart-msg">Seu carrinho está vazio.</p>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <strong id="cartTotalValue">R$ 0,00</strong>
+                </div>
+                <button id="checkoutBtn" class="btn-primary btn-block">
+                    <i class="fa-brands fa-whatsapp"></i> Enviar Pedido no WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Login / Cadastro -->
+    <div class="auth-modal" id="authModal">
+        <div class="auth-content">
+            <button id="closeAuth" class="close-auth">&times;</button>
+            <div class="auth-header-box">
+                <i class="fa-solid fa-cake-candles"></i>
+                <h3 id="authTitle">Entrar na sua Conta</h3>
+                <p id="authSubtitle">Acesse para salvar o seu carrinho na nuvem!</p>
+            </div>
+            
+            <form id="authForm">
+                <div class="form-group">
+                    <label>E-mail</label>
+                    <input type="email" id="authEmail" required placeholder="seu@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Senha</label>
+                    <input type="password" id="authPassword" required placeholder="Sua senha secreta">
+                </div>
+                <button type="submit" id="authSubmitBtn" class="btn-primary btn-block">Entrar</button>
+            </form>
+
+            <div class="auth-switch">
+                <p id="authSwitchText">Ainda não tem conta?</p>
+                <button id="authSwitchBtn" type="button">Criar conta agora</button>
+            </div>
+            
+            <div id="userInfoSection" style="display: none;">
+                <p>Logado como: <strong id="loggedUserEmail"></strong></p>
+                <button id="logoutBtn" class="btn-secondary-hero btn-block" style="color: #2d3436; border-color: #2d3436; margin-top: 1rem;">Sair da Conta</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botão da Estrelinha de Avaliações -->
+    <div class="reviews-widget-btn">
+        <button id="openReviewsBtn" title="Ver Avaliações dos Clientes">
+            <i class="fa-solid fa-star"></i>
+        </button>
+    </div>
+
+    <!-- Modal de Avaliações -->
+    <div class="reviews-modal" id="reviewsModal">
+        <div class="reviews-content">
+            <button id="closeReviews" class="close-reviews">&times;</button>
+            <div class="reviews-header-box">
+                <i class="fa-solid fa-star" style="color: #f1c40f; font-size: 2.5rem; margin-bottom: 0.5rem;"></i>
+                <h3>Avaliações dos Clientes</h3>
+                <p>Veja o que estão achando das delícias da Jaque ou deixe o seu depoimento!</p>
+            </div>
+
+            <div class="add-review-box">
+                <h4>Deixe sua avaliação</h4>
+                <form id="reviewForm">
+                    <div class="form-group">
+                        <label>Seu Nome</label>
+                        <input type="text" id="reviewName" required placeholder="Ex: Maria Silva">
+                    </div>
+                    <div class="form-group">
+                        <label>Sua Mensagem / Comentário</label>
+                        <textarea id="reviewText" required rows="3" placeholder="O bolo estava maravilhoso..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary btn-block">Enviar Avaliação</button>
+                </form>
+            </div>
+
+            <hr style="margin: 2rem 0; border: 0; border-top: 1px solid #eee;">
+
+            <div class="reviews-list" id="reviewsList">
+                <div class="testimonial-card" style="margin-bottom: 1rem;">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p>"O bolo natalino superou todas as expectativas! Perfeito nos mínimos detalhes e muito saboroso. A Jaque é incrível."</p>
+                    <h4>Mariana Souza</h4>
+                </div>
+                <div class="testimonial-card" style="margin-bottom: 1rem;">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p>"Os docinhos gourmet derretem na boca. Encomendei para o aniversário da minha filha e foi o maior sucesso!"</p>
+                    <h4>Carlos Eduardo</h4>
+                </div>
+                <div class="testimonial-card" style="margin-bottom: 1rem;">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p>"Atendimento impecável e entrega pontual. Já virei cliente fiel para todas as comemorações da família."</p>
+                    <h4>Juliana Ribeiro</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Widget de Chatbot IA -->
+    <div class="chat-widget">
+        <button id="chatToggle" class="chat-toggle-btn">
+            <i class="fa-solid fa-comments"></i>
+        </button>
+
+        <div class="chat-box" id="chatBox">
+            <div class="chat-header">
+                <div class="chat-title">
+                    <i class="fa-solid fa-robot"></i>
+                    <span>Assistente IA - Jaque</span>
+                </div>
+                <button id="chatClose" class="chat-close">&times;</button>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot">
+                    Olá! Sou a IA da Delícias da Jaque 🤖🍰. Posso te ajudar a escolher um bolo ou tirar dúvidas sobre o cardápio!
+                </div>
+            </div>
+
+            <div class="chat-input-area">
+                <input type="text" id="chatInput" placeholder="Digite sua pergunta..." autocomplete="off">
+                <button id="sendBtn"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Completo -->
+    <footer id="contato" class="footer-section">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>Delícias da <span>Jaque</span></h3>
+                <p>Transformando momentos especiais em memórias doces e inesquecíveis com confeitaria artesanal de excelência.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contato Rápido</h4>
+                <p><i class="fa-brands fa-whatsapp"></i> (62) 9252-5200</p>
+                <p><i class="fa-solid fa-envelope"></i> Jaquelinebispocarlos@gmail.com</p>
+                <p><i class="fa-solid fa-location-dot"></i> Atendimento sob encomenda</p>
+            </div>
+            <div class="footer-col">
+                <h4>Redes Sociais</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://wa.me/556292525200" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Delícias da Jaque - Confeitaria Artesanal. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script type="module" src="index.js"></script>
+</body>
+</html>
